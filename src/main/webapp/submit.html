@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX JSON</title>
+</head>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<body>
+<div align="center" style="margin-top:100px">
+    <form>
+        id: <input type="text" id="id" value="123"> <br>
+        name: <input type="text" id="name" value="category xxx"> <br>
+        <input type="submit" value="submit" id="sender">
+    </form>
+</div>
+<script>
+    $('#sender').click(function () {
+        var id=$("#id").val();
+        var name=$("#name").val();
+        var category={"id":id,"name":name};
+        var jsonData=JSON.stringify(category);
+        console.log(jsonData)
+        var page="/categories/"+id;
+        $.ajax({
+            type:"put",
+            url:page,
+            data:jsonData,
+            dataType:"json",
+            contentType:"application/json;charset=UTF-8",
+            success:function (result) {
+            }
+        });
+        alert("submit succeed!")
+    });
+
+</script>
+
+</body>
+</html>
